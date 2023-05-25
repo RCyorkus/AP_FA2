@@ -6,33 +6,49 @@
 #include "src/include/pallet.hpp"
 #include "src/include/shelf.hpp"
 
+
 int main(void){
-    std::cout << "Hello world" << std::endl;
-    Employee e1("ruben", true);
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Books", 100, 40), 
+        Pallet("Boxes", 100, 10), 
+        Pallet("Books", 100, 20), 
+        Pallet("Books", 100, 20)
+    };
 
-    Shelf s1 = Shelf();
+    Shelf shelf2 = Shelf();
+    shelf2.pallets = {
+        Pallet("Books", 100, 15), 
+        Pallet("Boxes", 100, 20), 
+        Pallet("Books", 100, 5), 
+        Pallet("Boxes", 100, 30)
+    };
 
-    std::array<Pallet, 4> pallets = {Pallet("auto",100,4), Pallet("fiets",100,1), Pallet("steen",100,5), Pallet("ballen",100,2)};
-    s1.pallets = pallets;
+    Shelf shelf3 = Shelf();
+    shelf3.pallets = {
+        Pallet("Toy Bears", 100, 20), 
+        Pallet("Toy Bears", 100, 10), 
+        Pallet(), 
+        Pallet("Toy Bears", 100, 30)
+    };
+    
+    warehouse.addShelf(shelf1);
+    warehouse.addShelf(shelf2);
+    warehouse.addShelf(shelf3);
 
-    Warehouse house = Warehouse();
-    house.addEmployee(e1);
+    warehouse.addEmployee(Employee("Bob", true));
 
-    house.rearrangeShelf(s1);
+    std::cout << "de orginale shelf" << std::endl;
+    warehouse.shelves[0].printShelfItems();
 
+    warehouse.rearrangeShelf(warehouse.shelves[0]);
 
-    std::cout << s1.shelfItem(0) << std::endl;
-    std::cout << s1.shelfItem(1) << std::endl;
-    std::cout << s1.shelfItem(2) << std::endl;
-    std::cout << s1.shelfItem(3) << std::endl;
+    std::cout << "gesorteerd" << std::endl;
+    warehouse.shelves[0].printShelfItems();
 
-    // house.addShelf(s1);
-    // std::cout << "here" << std::endl;
-    // std::cout << house.pickItems("auto", 3) << std::endl;
-    // s1.swapPallet(0,1);
-
-    // std::cout << s1.shelfItem(0) << std::endl;
-    // std::cout << s1.shelfItem(1) << std::endl;
-
-    // std::cout << p1.getItemName() << std::endl;
+    warehouse.pickItems("Toy Bears", 21);
+    
+    std::cout << "er zijn 21 beren gepakt" << std::endl;
+    warehouse.shelves[2].printShelfItems();
 }

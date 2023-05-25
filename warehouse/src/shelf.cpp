@@ -31,3 +31,9 @@ bool Shelf::swapPallet(const int slot, const int slot2){
 std::string Shelf::shelfItem(const int slot){
     return pallets[slot].getItemName();
 }
+
+void Shelf::printShelfItems(){
+    for(Pallet pallet : pallets){
+        std::cout << "item name: " << pallet.getItemName() << " ; item count: " << pallet.getItemCount() << std::endl;
+    }
+}

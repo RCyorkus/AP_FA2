@@ -13,4 +13,6 @@ class Shelf{
     bool swapPallet(const int slot,const int slot2);
 
     std::string shelfItem(const int slot);
+
+    void printShelfItems();
 };

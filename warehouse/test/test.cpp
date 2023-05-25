@@ -3,8 +3,6 @@
 #include <iostream>
 #include "include/catch.hpp"
 
-// #include "../src/include/pallet.hpp"
-// #include "../src/include/shelf.hpp"
 #include "../src/include/warehouse.hpp"
 
 bool operator==( Pallet lhs,  Pallet rhs){
@@ -16,7 +14,6 @@ bool operator==( Pallet lhs,  Pallet rhs){
 TEST_CASE("The pallet constructor actually assigns the provided values to the attributes", "pallet constructor"){
     Pallet p1 = Pallet("auto", 100, 4);
 
-    // check if all values are coratly add to and returned
     REQUIRE(p1.getItemName() == "auto");
     REQUIRE(p1.getRemainingSpace() == 96);
     REQUIRE(p1.getItemCount() == 4);
@@ -24,14 +21,14 @@ TEST_CASE("The pallet constructor actually assigns the provided values to the at
 TEST_CASE("check if all functions for the pallet work", "pallet functions"){
     Pallet p1 = Pallet("auto", 100, 4);
 
-    p1.takeOne(); // take 1 item of pallet
+    p1.takeOne(); 
     REQUIRE(p1.getItemCount() == 3);
 
-    p1.putOne(); // add one item to pallet
+    p1.putOne(); 
     REQUIRE(p1.getItemCount() == 4);
 
     Pallet p2 = Pallet();
-    p2.reallocateEmptyPallet("fiets", 10); // assaing item to empty pallet 
+    p2.reallocateEmptyPallet("fiets", 10);  
     REQUIRE(p2.getItemName() == "fiets");
     REQUIRE(p2.getRemainingSpace() == 10);
 
