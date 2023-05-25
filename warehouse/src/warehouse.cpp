@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
+#include <string>
 
 Warehouse::Warehouse(){}
 
@@ -57,6 +58,12 @@ bool Warehouse::rearrangeShelf(Shelf& shelf){
     return true;
 }
 
+/*code van chatGPT om strings lowercase te maken voor gebruikers gemak bij string vergelijking*/
+std::string toLowercase(const std::string& str) {
+    std::string lowercaseStr = str;
+    std::transform(lowercaseStr.begin(), lowercaseStr.end(), lowercaseStr.begin(), ::tolower);
+    return lowercaseStr;
+}
 
 /**
  * Checks if there are enough items of a specified item in all shelves.
@@ -70,7 +77,7 @@ bool enoughItems(std::vector<Shelf>& shelves, const std::string& itemName, int& 
 
     for (Shelf Shelf : shelves){ // loop trough all shelves
         for (Pallet pallet : Shelf.pallets) { // loop trough
-            if (pallet.getItemName() == itemName) { // check voor item
+            if (toLowercase(pallet.getItemName()) == toLowercase(itemName)) { // check voor item
                 totalItemCount += pallet.getItemCount();
                 if(totalItemCount >= itemCount){
                     return true;
@@ -91,7 +98,7 @@ bool enoughItems(std::vector<Shelf>& shelves, const std::string& itemName, int& 
 void pick(std::vector<Shelf>& shelves, const std::string& itemName, int& itemCount){
     for (Shelf& Shelf : shelves){
         for (Pallet& pallet : Shelf.pallets) { // voor pallets
-            if (pallet.getItemName() == itemName) { // check voor item
+            if (toLowercase(pallet.getItemName()) == toLowercase(itemName)) { // check voor item
                 while (itemCount > 0 && pallet.getItemCount() > 0) {
                     pallet.takeOne(); // pak item van pallet
                     itemCount--; // update count

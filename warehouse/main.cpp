@@ -47,7 +47,7 @@ int main(void){
     std::cout << "gesorteerd" << std::endl;
     warehouse.shelves[0].printShelfItems();
 
-    warehouse.pickItems("Toy Bears", 21);
+    warehouse.pickItems("toy bears", 21); // pick item is not case sesitive 
     
     std::cout << "er zijn 21 beren gepakt" << std::endl;
     warehouse.shelves[2].printShelfItems();
