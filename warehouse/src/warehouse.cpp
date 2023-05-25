@@ -45,15 +45,16 @@ bool shelfLoop(Shelf& shelf){
  * @return True if the shelf is successfully rearranged, otherwise false.
  */
 bool Warehouse::rearrangeShelf(Shelf& shelf){
-    if(Employees[0].forkliftCertificate == true){
-        bool sorting = true;
-        while (sorting) // while the shelf isn't sorted
-        {
-            sorting = shelfLoop(shelf);
-        }
-        return true;
+    if(Employees[0].forkliftCertificate == false || Employees[0].busy == true ){
+        return false;
     }
-    return false;
+
+    bool sorting = true;
+    while (sorting) // while the shelf isn't sorted
+    {
+        sorting = shelfLoop(shelf);
+    }
+    return true;
 }
 
 

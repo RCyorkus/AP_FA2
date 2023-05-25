@@ -36,7 +36,7 @@ int main(void){
     warehouse.addShelf(shelf1);
     warehouse.addShelf(shelf2);
     warehouse.addShelf(shelf3);
-
+    
     warehouse.addEmployee(Employee("Bob", true));
 
     std::cout << "de orginale shelf" << std::endl;
